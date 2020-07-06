@@ -6,11 +6,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class ExecutorMain {
+class ExecutorMain {
     private final static int LIST_SIZE = 1_000_000;
     private final static int THREAD_NUM = Runtime.getRuntime().availableProcessors();
 
-    public static void main(String[] args) throws InterruptedException {
+    static int calculateExecutorServiceSum() throws InterruptedException {
         List<Integer> integerList = ListProvider.getListInteger(LIST_SIZE);
         List<CallableSum> list = CallableSumListProvider.getCallableSumList(THREAD_NUM, integerList);
 
@@ -27,6 +27,6 @@ public class ExecutorMain {
             }
         }
         executorService.shutdown();
-        System.out.println(result);
+        return result;
     }
 }
